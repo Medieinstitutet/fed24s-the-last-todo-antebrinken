@@ -15,7 +15,7 @@ export default function TodoItem ({ todo, onToggle, onDelete }: Props) {
     return (
         <li style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
             {todo.text}
-            <button onClick={() => onToggle.(todo.id)}>Klar</button>
+            <button onClick={() => onToggle(todo.id)}>Klar</button>
             <button onClick={() => onDelete(todo.id)}>Ta bort</button>
             </li>
     );
