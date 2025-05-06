@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import './App.css'
-
+// src/App.tsx
+import { useState } from 'react';
+import './App.css';
 
 interface Todo {
   id: number;
@@ -8,59 +8,54 @@ interface Todo {
   completed: boolean;
 }
 
-function app() {
+function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [newTodo, setNewTodo] = useState('');
 
   const addTodo = () => {
-    if [newTodo, setNewTodo] = useState('');
+    if (newTodo.trim() === '') return;
 
-    const addTodo = () => {
-      if (newTodo.trim() === '') return;
-
-      const newItem: Todo = {
-        id: Date.now(),
-        text: newTodo,
-        completed: false
-      };
-      
-      setTodos ([...todos, newItem]);
-      setNewTodo('');
-  
+    const newItem: Todo = {
+      id: Date.now(),
+      text: newTodo,
+      completed: false
     };
 
-     const toggleTodo = (id: number) => {
-      setTodos(todos.map(todo =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      ));
-     };
+    setTodos([...todos, newItem]);
+    setNewTodo('');
+  };
 
-     const deleteTodo = (id: number) => {
-      setTodos(todos.filter(todo => todo.id !== id));
-     };
+  const toggleTodo = (id: number) => {
+    setTodos(todos.map(todo =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo
+    ));
+  };
 
-     return (
-      <div className="app">
-        <h1> Philips To-Do Lista</h1>
-        <div>
-          <input
-            type="text"
-            value={newTodo}
-            onChange={e => setNewTodo(e.target.value)}
-            placeholder="What Todo..."
-          />
-          <button onClick={addTodo}>Lägg till</button>
-        </div>
-        <ul>
-          {todos.map(todo => (
-            <li
+  const deleteTodo = (id: number) => {
+    setTodos(todos.filter(todo => todo.id !== id));
+  };
+
+  return (
+    <div className="app">
+      <h1>Philips To-Do Lista</h1>
+      <div>
+        <input
+          type="text"
+          value={newTodo}
+          onChange={e => setNewTodo(e.target.value)}
+          placeholder="Skriv något att göra..."
+        />
+        <button onClick={addTodo}>Lägg till</button>
+      </div>
+      <ul>
+        {todos.map(todo => (
+          <li
             key={todo.id}
-            style={{textDecoration: todo.completed ? 'line-through' : 'none' }}
-  
-            >
+            style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}
+          >
             {todo.text}
-            <button onClick={() => toggleTodo(todo.id)}>✔</button>
-            <button onClick={() => deleteTodo(todo.id)}>🗑</button>
+            <button onClick={() => toggleTodo(todo.id)}>Klar</button>
+            <button onClick={() => deleteTodo(todo.id)}>Ta bort</button>
           </li>
         ))}
       </ul>
