@@ -1,4 +1,5 @@
-import styles from './TodoItem.module.css'
+
+import '../App.css'
 
 interface Todo {
     id: number;
