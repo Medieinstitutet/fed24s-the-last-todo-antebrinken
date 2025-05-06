@@ -11,6 +11,7 @@ interface Todo {
 
 function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
+  const [sortOrder, setSortOrder] = useState<'completed' | 'incomplete' | 'all'>('all'); 
 
   const addTodo = (text: string) => {
     const newItem: Todo = {
@@ -32,22 +33,48 @@ function App() {
     setTodos(todos.filter(todo => todo.id !== id));
   };
 
+
+  const sortedTodos = () => {
+    switch (sortOrder) {
+      case 'completed':
+        return todos.filter(todo => todo.completed);
+      case 'incomplete':
+        return todos.filter(todo => !todo.completed);
+      default:
+        return todos;
+    }
+  };
+
+
+  const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSortOrder(event.target.value as 'completed' | 'incomplete' | 'all');
+  };
+
   return (
     <div className="app">
       <h1>Philips To-Do Lista</h1>
+      <TodoForm onAdd={addTodo} />
+      
+      
       <div>
-        <TodoForm onAdd={addTodo} />
-        <ul>
-          {todos.map(todo => (
-            <TodoItem
-              key={todo.id}
-              todo={todo}
-              onToggle={toggleTodo}
-              onDelete={deleteTodo}
-            />
-          ))}
-        </ul>
+        <label htmlFor="sortTodos">Sortera efter: </label>
+        <select id="sortTodos" value={sortOrder} onChange={handleSortChange}>
+          <option value="all">Alla</option>
+          <option value="completed">Klara</option>
+          <option value="incomplete">Inte klara</option>
+        </select>
       </div>
+      
+      <ul>
+        {sortedTodos().map(todo => (
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            onToggle={toggleTodo}
+            onDelete={deleteTodo}
+          />
+        ))}
+      </ul>
     </div>
   );
 }
