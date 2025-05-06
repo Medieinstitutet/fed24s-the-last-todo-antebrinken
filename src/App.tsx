@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import TodoItem from './components/TodoItem';
+import TodoForm from './components/TodoForm';
 
 interface Todo {
   id: number;
@@ -10,19 +11,15 @@ interface Todo {
 
 function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
-  const [newTodo, setNewTodo] = useState('');
 
-  const addTodo = () => {
-    if (newTodo.trim() === '') return;
-
+  const addTodo = (text: string) => {
     const newItem: Todo = {
       id: Date.now(),
-      text: newTodo,
+      text,
       completed: false
     };
 
     setTodos([...todos, newItem]);
-    setNewTodo('');
   };
 
   const toggleTodo = (id: number) => {
@@ -39,24 +36,18 @@ function App() {
     <div className="app">
       <h1>Philips To-Do Lista</h1>
       <div>
-        <input
-          type="text"
-          value={newTodo}
-          onChange={e => setNewTodo(e.target.value)}
-          placeholder="Skriv något att göra..."
-        />
-        <button onClick={addTodo}>Lägg till</button>
+        <TodoForm onAdd={addTodo} />
+        <ul>
+          {todos.map(todo => (
+            <TodoItem
+              key={todo.id}
+              todo={todo}
+              onToggle={toggleTodo}
+              onDelete={deleteTodo}
+            />
+          ))}
+        </ul>
       </div>
-      <ul>
-        {todos.map(todo => (
-          <TodoItem
-            key={todo.id}
-            todo={todo}
-            onToggle={toggleTodo}
-            onDelete={deleteTodo}
-          />
-        ))}
-      </ul>
     </div>
   );
 }
