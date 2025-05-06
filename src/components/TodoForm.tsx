@@ -22,7 +22,11 @@ export default function TodoForm({ onAdd }: Props) {
          onChange={e => setInput(e.target.value)}
          placeholder="What Todo?"
          />
-         <button type="submit">Lägg till Todo</button>
+         <button
+  type="submit"
+  className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+  Lägg till Todo
+  </button>
          </form>
     );
 }
