@@ -1,6 +1,6 @@
-// src/App.tsx
 import { useState } from 'react';
 import './App.css';
+import TodoItem from './components/TodoItem';
 
 interface Todo {
   id: number;
@@ -49,14 +49,12 @@ function App() {
       </div>
       <ul>
         {todos.map(todo => (
-          <li
+          <TodoItem
             key={todo.id}
-            style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}
-          >
-            {todo.text}
-            <button onClick={() => toggleTodo(todo.id)}>Klar</button>
-            <button onClick={() => deleteTodo(todo.id)}>Ta bort</button>
-          </li>
+            todo={todo}
+            onToggle={toggleTodo}
+            onDelete={deleteTodo}
+          />
         ))}
       </ul>
     </div>
