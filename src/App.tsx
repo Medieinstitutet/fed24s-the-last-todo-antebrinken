@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './App.css';
+import './App.css'; 
 import TodoItem from './components/TodoItem';
 import TodoForm from './components/TodoForm';
 import "tailwindcss";
@@ -50,15 +50,15 @@ function App() {
   };
 
   return (
-    <div className="app">
+    <div className="app min-h-screen bg-cover bg-center bg-fixed bg-gradient-to-r from-green-400 via-blue-500 to-purple-600">
       
       <div className="flex flex-col sm:flex-row justify-between items-center px-6 py-4 bg-gray-100 shadow-md mb-6">
-        {}
+        
         <h1 className="text-4xl font-bold text-center sm:text-left sm:w-auto w-full">
           Philips Todo Lista
         </h1>
         
-        {}
+        
         <div className="mt-4 sm:mt-0 sm:ml-auto flex items-center gap-2">
           <label htmlFor="sortTodos" className="font-medium text-gray-700">Sortera efter:</label>
           <select
@@ -74,11 +74,11 @@ function App() {
         </div>
       </div>
 
-      {}
+      
       <TodoForm onAdd={addTodo} />
 
-      {}
-      <ul>
+      
+      <ul className='space-y-4'>
         {sortedTodos().map(todo => (
           <TodoItem
             key={todo.id}

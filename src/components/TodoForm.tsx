@@ -18,7 +18,7 @@ export default function TodoForm({ onAdd }: Props) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col sm:flex-row gap-4 items-center p-4 bg-white shadow-md rounded-md max-w-md mx-auto"
+      className="flex flex-col sm:flex-row gap-4 items-center p-4 bg-white shadow-md max-w-md mx-auto"
     >
       <input
         type="text"
