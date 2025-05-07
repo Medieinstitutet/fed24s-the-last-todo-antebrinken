@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "tailwindcss";
 
 interface Props {
     onAdd: (text: string) => void;

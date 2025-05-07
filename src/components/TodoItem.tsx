@@ -1,6 +1,6 @@
-
+import "tailwindcss";
 import '../App.css'
-import tailwindcss from '@tailwindcss/vite'
+
 
 interface Todo {
     id: number;

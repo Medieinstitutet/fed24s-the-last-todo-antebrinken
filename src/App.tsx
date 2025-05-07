@@ -2,6 +2,9 @@ import { useState } from 'react';
 import './App.css';
 import TodoItem from './components/TodoItem';
 import TodoForm from './components/TodoForm';
+import "tailwindcss";
+
+
 
 
 interface Todo {
